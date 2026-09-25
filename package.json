@@ -1,0 +1,20 @@
+{
+  "name": "pirates-web",
+  "private": true,
+  "version": "1.0.0",
+  "description": "Thor Pirates - ThorVG WebCanvas port",
+  "license": "MIT",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc --noEmit && vite build",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "@thorvg/webcanvas": "^1.1.2"
+  },
+  "devDependencies": {
+    "typescript": "^7.0.2",
+    "vite": "^8.3.0"
+  }
+}

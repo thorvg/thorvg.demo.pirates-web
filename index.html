@@ -1,0 +1,21 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="icon" href="data:," />
+  <title>ThorVG Pirates</title>
+  <style>
+    html, body { margin: 0; height: 100%; overflow: hidden; background: #0a0818; }
+    #stage { position: absolute; left: 0; top: 0; width: 1600px; height: 1024px; transform-origin: 0 0; }
+    #canvas { display: block; outline: none; }
+    #status { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center;
+      color: #ffebcf; font: 16px monospace; }
+  </style>
+</head>
+<body>
+  <div id="stage"><canvas id="canvas" tabindex="0"></canvas></div>
+  <div id="status">Loading ThorVG...</div>
+  <script type="module" src="/src/main.ts"></script>
+</body>
+</html>
