@@ -3,6 +3,7 @@
  * MIT License. TypeScript port of thorvg-pirates.cpp on top of @thorvg/webcanvas.
  */
 import type { Canvas, Matrix, Paint, Picture, Scene, Shape, Text, ThorVGNamespace } from '@thorvg/webcanvas';
+import { playSound } from './sound';
 
 export const WIDTH = 1600;
 export const HEIGHT = 1024;
@@ -223,6 +224,11 @@ export class ThorPirates {
     const gradient = new this.TVG.RadialGradient(cx, cy, r, fx, fy, fr);
     for (const [offset, red, g, b, a] of stops) gradient.addStop(offset, [red, g, b, a]);
     return gradient;
+  }
+
+  /** Stereo position of a world-space x coordinate as seen through the camera. */
+  private panAt(x: number) {
+    return 1.4 * (x / this.size.w - this.cameraX) * this.cameraZoom;
   }
 
   private updateCamera(dt: number) {
@@ -748,6 +754,7 @@ export class ThorPirates {
     this.vessels[0].recoilStart = this.lastFrame * 0.001;
     this.vessels[0].recoilDirection = ball.vx < 0.0 ? 1.0 : -1.0;
     this.launch(ball, false);
+    playSound('cannon', 1.0, this.panAt(ball.x));
   }
 
   private updateCannonballs(dt: number, time: number) {
@@ -792,6 +799,10 @@ export class ThorPirates {
           const m = target.shipMatrix;
           target.sinkY = m.e21 * 90.0 + m.e22 * shipWaterline + m.e23;
           target.sinkAngle = Math.atan2(m.e21, m.e11);
+          playSound('sink', 1.0, this.panAt(hitX));
+          if (!target.enemy) playSound('gameover', 0.8);
+        } else {
+          playSound('hit', target.enemy ? 0.8 : 1.0, this.panAt(hitX));
         }
         this.updateFlames(target, time);
         this.shatter(hitX, hitY, time, target.enemy && target.health === 0 ? 160 : 32);
@@ -807,6 +818,7 @@ export class ThorPirates {
         this.impacts[this.nextImpact] = makeImpact(u, time, strength);
         this.nextImpact = (this.nextImpact + 1) % 16;
         this.splash(ball.x, surface, time, strength);
+        playSound('splash', clamp(strength / 0.03, 0.4, 1.0), this.panAt(ball.x));
         ball.submerged = true;
         ball.vx *= 0.3;
         ball.vy *= 0.3;
@@ -922,6 +934,7 @@ export class ThorPirates {
             label.fontSize(18.0);
             label.fill(255, 255, 195);
           }
+          playSound('pickup', 0.8);
           player.health = Math.min(player.health + 1, 7);
           if (player.flameCount > 0) {
             --player.flameCount;
@@ -1104,6 +1117,7 @@ export class ThorPirates {
       ball.vx = vx;
       ball.vy = vy;
       this.launch(ball, true);
+      playSound('cannon', 0.6, this.panAt(ball.x));
       vessel.recoilStart = time;
       vessel.recoilDirection = vx < 0.0 ? 1.0 : -1.0;
       vessel.attackCharging = false;
