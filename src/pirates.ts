@@ -3,7 +3,7 @@
  * MIT License. TypeScript port of thorvg-pirates.cpp on top of @thorvg/webcanvas.
  */
 import type { Canvas, Matrix, Paint, Picture, Scene, Shape, Text, ThorVGNamespace } from '@thorvg/webcanvas';
-import { playSound } from './sound';
+import { duckMusic, playSound } from './sound';
 
 export const WIDTH = 1600;
 export const HEIGHT = 1024;
@@ -800,7 +800,10 @@ export class ThorPirates {
           target.sinkY = m.e21 * 90.0 + m.e22 * shipWaterline + m.e23;
           target.sinkAngle = Math.atan2(m.e21, m.e11);
           playSound('sink', 1.0, this.panAt(hitX));
-          if (!target.enemy) playSound('gameover', 0.8);
+          if (!target.enemy) {
+            playSound('gameover', 0.8);
+            duckMusic(true);
+          }
         } else {
           playSound('hit', target.enemy ? 0.8 : 1.0, this.panAt(hitX));
         }
@@ -1633,6 +1636,7 @@ export class ThorPirates {
   }
 
   private resetGame() {
+    duckMusic(false);
     this.canvas.remove();
     this.vessels = initialVessels();
     this.crates = [];

@@ -4,6 +4,7 @@ import type { RendererType } from '@thorvg/webcanvas';
 import wasmUrl from '../node_modules/@thorvg/webcanvas/dist/thorvg.wasm?url';
 import fontUrl from './assets/04B_30__.ttf?url';
 import { ThorPirates, WIDTH, HEIGHT } from './pirates';
+import { toggleMusic } from './sound';
 
 // ?renderer=<engine> selects the rendering backend. The default is `gl`.
 function options(): RendererType {
@@ -44,6 +45,7 @@ async function main() {
   addEventListener('resize', () => fit(stage));
 
   addEventListener('keydown', (event) => {
+    if (event.code === 'KeyM' && !event.repeat) toggleMusic();
     if (game.keydown(event.code)) event.preventDefault();
   });
   addEventListener('keyup', (event) => {

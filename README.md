@@ -35,6 +35,7 @@ Switch renderer with a URL param:
 - **Left / Right**: Move the ship
 - **Up / Down**: Adjust the cannon angle
 - **Space**: Hold to charge, release to fire (restart after Game Over)
+- **M**: Toggle background music
 
 
 ## Credits
