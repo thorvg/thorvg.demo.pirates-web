@@ -11,7 +11,7 @@
 
 **"Rule the Seas, One Cannonball at a Time!"**
 
-Web port of [thorvg.demo.pirates](https://github.com/thorvg/thorvg.demo.pirates), running on the [@thorvg/webcanvas](https://www.npmjs.com/package/@thorvg/webcanvas). Every visual is rendered by ThorVG (WASM).
+Web port of [thorvg.demo.pirates](https://github.com/thorvg/thorvg.demo.pirates), running on the [@thorvg/webcanvas](https://www.npmjs.com/package/@thorvg/webcanvas).
 
 ## Development
 
@@ -21,24 +21,3 @@ $ npm run dev       # dev server
 $ npm run build     # type-check + production build (`dist/`)
 $ npm run preview   # serve the production build locally
 ```
-
-## Render flags
-
-Switch renderer with a URL param:
-
-- Software: `?renderer=sw`
-- WebGL: `?renderer=gl` (default)
-- WebGPU: `?renderer=wg`
-
-## Controls
-
-- **Left / Right**: Move the ship
-- **Up / Down**: Adjust the cannon angle
-- **Space**: Hold to charge, release to fire (restart after Game Over)
-- **M**: Toggle background music
-
-
-## Credits
-
-- **Original Project:** [ThorVG Pirates](https://github.com/thorvg/thorvg.demo.pirates)
-- **Programming:** [Jinny You](https://github.com/tinyjin)
