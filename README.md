@@ -21,3 +21,8 @@ $ npm run dev       # dev server
 $ npm run build     # type-check + production build (`dist/`)
 $ npm run preview   # serve the production build locally
 ```
+
+## Credits
+
+- **Original Project:** [ThorVG Pirates](https://github.com/thorvg/thorvg.demo.pirates)
+- **Web Port:** [LottieFiles](https://lottiefiles.com/) ([Jinny You](https://github.com/tinyjin))
