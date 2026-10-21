@@ -34,7 +34,7 @@ async function main() {
     fetch(fontUrl).then((response) => response.arrayBuffer()),
   ]);
 
-  const canvas = new TVG.Canvas('#canvas', { width: WIDTH, height: HEIGHT });
+  const canvas = new TVG.Canvas('#canvas', { width: WIDTH, height: HEIGHT, engineOption: TVG.EngineOption.None });
   const game = new ThorPirates(TVG, canvas, engine !== 'sw', new Uint8Array(font));
   game.content();
   if (import.meta.env.DEV) Object.assign(window, { game });  // console debugging handle
