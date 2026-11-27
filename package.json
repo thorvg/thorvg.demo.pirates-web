@@ -11,7 +11,7 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "@thorvg/webcanvas": "^1.1.2"
+    "@thorvg/webcanvas": "1.1.4"
   },
   "devDependencies": {
     "typescript": "^7.0.2",
